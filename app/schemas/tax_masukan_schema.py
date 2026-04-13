@@ -25,7 +25,7 @@ class TaxMasukanBase(BaseModel):
     date_modified: Optional[datetime]
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class TaxMasukanResponse(BaseModel):
     status: bool
