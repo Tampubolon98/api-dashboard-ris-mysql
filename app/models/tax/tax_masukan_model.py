@@ -1,6 +1,7 @@
-from sqlalchemy import Column, Integer, String, Boolean, DateTime
+from sqlalchemy import Column, Integer, String, Boolean, DateTime, ForeignKey
 from sqlalchemy.sql import func
 from app.core.database import Base
+from sqlalchemy.orm import relationship
 
 
 class TaxMasukanModel(Base):
@@ -26,3 +27,6 @@ class TaxMasukanModel(Base):
     date_create = Column(DateTime(timezone=True), server_default=func.now())
     user_modified = Column(String, nullable=False)
     date_modified = Column(DateTime(timezone=True), server_default=func.now())
+    supplier_code = Column(String, ForeignKey("supplier.supplier_code"))
+
+    supplier = relationship('SupplierModel', back_populates="tax_masukan")

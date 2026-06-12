@@ -1,14 +1,15 @@
 from sqlalchemy import Column, Integer, String, Boolean, DateTime
 from sqlalchemy.sql import func
-from core.database import Base
+from app.core.database import Base
+from sqlalchemy.orm import relationship
 
 class SupplierModel(Base):
   __tablename__ = "supplier"
 
   merch_lvl1 = Column(String, nullable=False)
-  const_supplier = Column(String, nullable=False)
+  cons_supplier = Column(String, nullable=False)
   kode_bayar = Column(String, nullable=False)
-  supplier_code = Column(String, nullable=False)
+  supplier_code = Column(String, primary_key=True, nullable=False)
   supplier_name = Column(String, nullable=False)
   order_address = Column(String, nullable=False)
   order_city = Column(String, nullable=False)
@@ -42,9 +43,9 @@ class SupplierModel(Base):
   disc_lvl2 = Column(String, nullable=False)
   disc_lvl3 = Column(String, nullable=False)
   val_disc_lvl1 = Column(String, nullable=False)
-  val_disc_lvl2 = Column(String, nullable=False)
+  val_dis_lvl2 = Column(String, nullable=False)
   val_disc_lvl3 = Column(String, nullable=False)
-  sale_memo_no = Column(String, nullable=False)
+  sales_memo_no = Column(String, nullable=False)
   ext_desc = Column(String, nullable=False)
   flag_rak = Column(String, nullable=False)
   flag_promosi = Column(String, nullable=False)
@@ -54,8 +55,8 @@ class SupplierModel(Base):
   pembukaan_toko = Column(String, nullable=False)
   acara_disc = Column(String, nullable=False)
   pcc = Column(String, nullable=False)
-  reserv1 = Column(String, nullable=False)
-  reserv2 = Column(String, nullable=False)
+  reserv_1 = Column(String, nullable=False)
+  reserv_2 = Column(String, nullable=False)
   merchandise = Column(String, nullable=False)
   voucher = Column(String, nullable=False)
   payment_store = Column(String, nullable=False)
@@ -79,3 +80,5 @@ class SupplierModel(Base):
   beneficiary_type = Column(String, nullable=False)
   supplier_dcfee = Column(String, nullable=False)
   nik = Column(String, nullable=False)
+
+  tax_masukan = relationship("TaxMasukanModel", back_populates="supplier")
