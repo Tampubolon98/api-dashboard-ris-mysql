@@ -1,5 +1,5 @@
 from sqlalchemy.orm import Session
-from app.repositories.tax_masukan_repository import TaxMasukanRepository
+from app.repositories.tax.tax_masukan_repository import TaxMasukanRepository
 
 class TaxMasukanController:
   def __init__(self, db: Session):

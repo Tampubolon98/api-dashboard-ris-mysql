@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from app.core.database import get_db
-from app.schemas.tax_masukan_schema import TaxMasukanResponse
+from app.schemas.tax.tax_masukan_schema import TaxMasukanResponse
 from app.controllers.tax_masukan_controller import TaxMasukanController
 
 router = APIRouter()
