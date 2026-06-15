@@ -32,3 +32,11 @@ class MasterEmployeeBase(BaseModel):
     md_emp: str
     brand_emp: str
     tanggal_selesai: datetime = Field(default_factory=datetime.now)
+
+    class Config:
+        from_attributes = True
+
+class MasterEmployeeResponse(BaseModel):
+    status: bool
+    total_data: int
+    data: List[MasterEmployeeBase]
