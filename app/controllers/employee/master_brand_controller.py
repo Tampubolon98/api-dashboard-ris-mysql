@@ -14,3 +14,13 @@ class MasterBrandController:
       "total_data": len(data),
       "data": data
     }
+  
+  def create_master_brand_controller(self, data):
+    repo = MasterBrandRepository(db=self.db)
+    result = repo.create_master_brand_repository(data=data)
+
+    return {
+      "status": True,
+      "message": "Data berhasil ditambahkan",
+      "data": result
+    }
