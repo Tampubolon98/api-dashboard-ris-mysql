@@ -14,3 +14,13 @@ class MasterEmployeeController:
       "total_data": len(data),
       "data": data
     }
+  
+  def create_master_employee_controller(self, data):
+    repo = MasterEmployeeRepository(db=self.db)
+    result = repo.create_master_employee_repository(data=data)
+
+    return {
+      "status": True,
+      "message": "Data berhasil ditambahkan",
+      "data": result
+    }

@@ -1,9 +1,9 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 from app.core.database import get_db
-from app.schemas.employee.master_employee_schema import MasterEmployeeResponse
+from app.schemas.employee.master_employee_schema import MasterEmployeeBase, MasterEmployeeResponse, CreateMasterEmployeeBase, CreateMasterEmployeeResponse
 from app.controllers.employee.master_employee_controller import MasterEmployeeController
-from app.schemas.employee.master_brand_schema import MasterBrandResponse
+from app.schemas.employee.master_brand_schema import MasterBrandResponse, CreateMasterBrandBase, CreateMasterBrandResponse
 from app.controllers.employee.master_brand_controller import MasterBrandController
 
 router = APIRouter()
@@ -18,6 +18,15 @@ async def get_master_employee(
     result = query.get_master_employee_controller(skip=skip, limit=limit)
     return result
 
+@router.post("/master-employee/create", response_model=CreateMasterEmployeeResponse, tags=["Master Employee"])
+async def create_master_employee(
+    data: CreateMasterEmployeeBase,
+    db: Session = Depends(get_db)
+):
+    query = MasterEmployeeController(db)
+    result = query.create_master_employee_controller(data=data)
+    return result
+
 @router.get("/master-brand/get", response_model=MasterBrandResponse, tags=["Master Brand"])
 async def get_master_brand(
     db: Session = Depends(get_db),
@@ -26,4 +35,13 @@ async def get_master_brand(
 ):
     query = MasterBrandController(db)
     result = query.get_master_brand_controller(skip=skip, limit=limit)
+    return result
+
+@router.post("/master-brand/create", response_model=CreateMasterBrandResponse, tags=["Master Brand"])
+async def create_master_brand(
+    data: CreateMasterBrandBase,
+    db: Session = Depends(get_db)
+):
+    query = MasterBrandController(db)
+    result = query.create_master_brand_controller(data=data)
     return result

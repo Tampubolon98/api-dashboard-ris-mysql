@@ -36,7 +36,42 @@ class MasterEmployeeBase(BaseModel):
     class Config:
         from_attributes = True
 
+class CreateMasterEmployeeBase(BaseModel):
+    nama: str
+    alamat: str
+    tanggal_lahir: datetime = Field(default_factory=datetime.now)
+    kota: str
+    kode_toko: str
+    no_handphone: str
+    tanggal_masuk: datetime = Field(default_factory=datetime.now)
+    no_kk: str
+    no_ktp: str
+    data_pola: str
+    id_employee: int
+    jenis_kelamin: str
+    status: str
+    supplier: str
+    alamat_rumah: str
+    user_create: Optional[str] = "SYSTEM"
+    date_create: datetime = Field(default_factory=datetime.now)
+    keterangan: str
+    tanggal_keluar: datetime = Field(default_factory=datetime.now)
+    status_aktif: str
+    image_employee: str
+    kategori_karyawan: str
+    md_emp: str
+    brand_emp: str
+    tanggal_selesai: datetime = Field(default_factory=datetime.now)
+
+    class Config:
+        from_attributes = True
+
 class MasterEmployeeResponse(BaseModel):
     status: bool
     total_data: int
     data: List[MasterEmployeeBase]
+
+class CreateMasterEmployeeResponse(BaseModel):
+    status: bool
+    message: str
+    data: CreateMasterEmployeeBase
