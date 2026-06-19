@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, UploadFile, File
 from sqlalchemy.orm import Session
 from app.core.database import get_db
 from app.schemas.employee.master_employee_schema import MasterEmployeeBase, MasterEmployeeResponse, CreateMasterEmployeeBase, CreateMasterEmployeeResponse
@@ -45,3 +45,11 @@ async def create_master_brand(
     query = MasterBrandController(db)
     result = query.create_master_brand_controller(data=data)
     return result
+
+@router.post("/master-brand", tags=["Master Brand"])
+async def master_brand(
+    file: UploadFile = File(...),
+    db: Session = Depends(get_db)
+):
+    controller = MasterBrandController(db)
+    return controller.create_master_brand_controller(payload=file)
