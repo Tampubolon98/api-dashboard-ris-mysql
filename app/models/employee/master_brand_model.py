@@ -9,7 +9,7 @@ class MasterBrandModel(Base):
   md = Column(String, nullable=False)
   detail_brand = Column(String, nullable=False)
   nama_supplier = Column(String, nullable=False)
-  id_brand_emp = Column(Integer, primary_key=True, nullable=False)
+  id_brand_emp = Column(String, primary_key=True, nullable=False)
   user_create = Column(String, nullable=False)
   date_create = Column(DateTime(timezone=True), server_default=func.now())
   user_modified = Column(String, nullable=False)

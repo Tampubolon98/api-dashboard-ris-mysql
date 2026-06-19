@@ -16,3 +16,8 @@ class MasterBrandRepository:
     self.db.commit()
     self.db.refresh(result)
     return result
+  
+  def create_brand(self, data: list[MasterBrandModel]):
+    self.db.add_all(data)
+    self.db.commit()
+    return data

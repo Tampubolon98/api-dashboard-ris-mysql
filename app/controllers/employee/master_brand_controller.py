@@ -1,5 +1,6 @@
 from sqlalchemy.orm import Session
 from app.repositories.employee.master_brand_repository import MasterBrandRepository
+from app.services.employee.master_brand_service import MasterBrandService
 
 class MasterBrandController:
   def __init__(self, db: Session):
@@ -24,3 +25,8 @@ class MasterBrandController:
       "message": "Data berhasil ditambahkan",
       "data": result
     }
+  
+  def create_master_brand_controller(self, payload):
+    repo = MasterBrandService(db=self.db)
+    result = repo.create_brands(file=payload)
+    return result
