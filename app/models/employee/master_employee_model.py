@@ -36,3 +36,4 @@ class MasterEmployeeModel(Base):
   brand_emp = Column(String, nullable=False)
   tanggal_selesai = Column(DateTime(timezone=True), server_default=func.now())
 
+  mutasi = relationship("MutasiEmployeeModel", back_populates="master_employee")
